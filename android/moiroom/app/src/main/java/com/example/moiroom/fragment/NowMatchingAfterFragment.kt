@@ -77,23 +77,13 @@ class NowMatchingAfterFragment : Fragment(), CardAdapter.OnCharcterClickListener
         Log.d("MYTAG", "Now Matching After Fragment View Created.")
         Log.d("MYTAG", "Member: ${cachedMatchingResult}")
 
-//        if (cachedMatchingResult != null && cachedPage != null) {
-//
-//            currentPageNumber = cachedPage.currentPage
-//            currentPageItems = 0
-//            totalPage = 0
-//            totalItems = 0
-//        }
-//
-//        if (cachedMatchedMemberList!!.data.currentPage != 1) {
-//            Log.d("MYTAG", "NowMatchingAfterFragment: 다시 불러와야 함.")
-//            getMatchedMember(requireContext(), 1)
-//            currentPageNumber = 0
-//            currentPageItems = 0
-//            totalPage = 0
-//            totalItems = 0
-//            setCardAdapter(toggled)
-//        }
+        // 목업 데이터 사용을 위해서 추가
+        if (cachedUserInfo == null) {
+            getUserInfo(requireContext())
+        }
+        if (cachedMatchingResult == null) {
+            getMatchedMember(requireContext(), 1)
+        }
 
         CachedUserInfoLiveData.observe(viewLifecycleOwner) { userInfo ->
             Log.d("MYTAG", "onCreateView: 캐시 데이터 변경 감지 in 매칭 결과 페이지 of 사용자 데이터")
@@ -106,32 +96,6 @@ class NowMatchingAfterFragment : Fragment(), CardAdapter.OnCharcterClickListener
                 getUserInfo(requireContext())
             }
         }
-
-//        CachedMatchedMemberListLiveData.observe(viewLifecycleOwner) {matchedMemberList ->
-//            Log.d("MYTAG", "onCreateView: 캐시 데이터 변경 감지 in 매칭 결과 페이지 of 매칭 멤버 리스트")
-//            cachedMatchedMemberList = cacheMatchedMemberList.get("matchedMemberList")
-//
-//            if (cachedMatchedMemberList != null) {
-//                Log.d("MYTAG", "nowMatchingAfterFragment: 매칭 멤버 리스트가 null이 아님.")
-//                Log.d("MYTAG", "nowMatchingAfterFragment: 현재 페이지 $currentPageNumber, 받아온 페이지 ${cachedMatchedMemberList!!.data.currentPage}, 총페이지 ${cachedMatchedMemberList!!.data.totalPages}")
-//                totalPage = cachedMatchedMemberList!!.data.totalPages
-//                totalItems = cachedMatchedMemberList!!.data.totalElements
-//                currentPageItems = cachedMatchedMemberList!!.data.pageSize
-//                binding.totalCard.text = "$totalItems"
-//
-//                if (currentPageNumber < cachedMatchedMemberList!!.data.currentPage) {
-//                    Log.d("MYTAG", "nowMatchingAfterFragment: 새로운 페이지 받기")
-//                    for (member in cachedMatchedMemberList!!.data.content) {
-//                        matchedMemberListForAdapter.add(member)
-//                        currentPageNumber = cachedMatchedMemberList!!.data.currentPage
-//                    }
-//                    Log.d("MYTAG", "nowMatchingAfterFragment: 새로운 페이지를 받아서 새롭게 어댑터 세팅합니다.")
-//                    setCardAdapter(toggled)
-//                    (binding.recyclerView.layoutManager as LinearLayoutManager).scrollToPosition(currentScrollPosition)
-//                    binding.viewPager2.currentItem = currentViewPagerPosition
-//                }
-//            }
-//        }
 
         CachedPageLiveData.observe(viewLifecycleOwner) { page ->
             Log.d("MYTAG", "onCreateView: 캐시 데이터 변경 감지 in 매칭 결과 페이지 of 페이지")

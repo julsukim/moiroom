@@ -72,4 +72,7 @@
     <color name="rate_over_70">#BBCA06</color>
     <color name="rate_over_60">#E3C147</color>
     <color name="rate_else">#AEA7A1</color>
+
+    <!-- 매칭 하단 시스템 네비게이션 색상 -->
+    <color name="navigation_bottom_matching">#FF5900</color>
 </resources>

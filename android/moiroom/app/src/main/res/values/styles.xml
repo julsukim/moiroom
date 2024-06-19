@@ -8,6 +8,8 @@
         <item name="colorControlActivated">@color/main_orange</item>
         <item name="android:statusBarColor">@color/main_orange</item>
         <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@color/navigation_bottom_matching</item>
+        <item name="android:windowLightNavigationBar">false</item>
     </style>
 
     <style name="ChatActivityTheme" parent="Theme.Material3.DayNight.NoActionBar">
